@@ -1,1 +1,13 @@
-===
+===predicate===
+key type: string
+
+===decisions
+- store value in memory by column or by row?
+http://blog.csdn.net/historyasamirror/article/details/6214466
+
+- why keyspace?
+separate time aware and time unaware tables
+
+
+===todo
+sstore batch insert 
