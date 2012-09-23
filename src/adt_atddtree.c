@@ -73,7 +73,7 @@ int atddtree_find(atddtree* t, key* k, atddtree_node** n, int* d)
 	while (p != NULL )
 	{
 		//id = 1;
-		if (KEYCMP(*(p->k), *k) == 0)
+		if (KEYCMP(*(p->k), *k) == 0)	//mmm
 		{
 			*n = p;
 			*d = l;
