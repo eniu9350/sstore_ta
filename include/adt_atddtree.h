@@ -72,7 +72,6 @@ atddtree* atddtree_create(key* kmin, key* kmax);
  \return 1 if found, -1 if not found and in left child, -2 if found and in right
  */
 int atddtree_find(atddtree* t, key* k, atddtree_node** n, int* d);
-int atddtree_insert(atddtree* t, key* k);
 /**
  @}
  */

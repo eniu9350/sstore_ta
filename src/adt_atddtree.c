@@ -3,16 +3,17 @@
 mainadtoperation* atddtree_getadtops()
 {
 	mainadtoperation* ops = MALLOC(1, mainadtoperation);
-	ops->insertop = &atddtree_mainadt_insert;
-	ops->findop = &atddtree_mainadt_find;
+	ops->setop = &atddtree_mainadt_set;
+	ops->getop = &atddtree_mainadt_get;
 	return ops;
 }
-void atddtree_mainadt_insert(void* data, keyspace* ks, key* k, value* r)
-{
 
+int atddtree_mainadt_set(void* data, keyspace* ks, key* k, adtvalue* r)
+{
+	return 0;
 }
 
-value* atddtree_mainadt_find(void* data, keyspace* ks, key* k)
+adtvalue* atddtree_mainadt_get(void* data, keyspace* ks, key* k)
 {
 	return NULL ;
 }
