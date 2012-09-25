@@ -1,6 +1,6 @@
 #include "adt_atddtree.h"
 
-mainadtoperation* atddtree_getadtops()
+mainadtoperation* atddtree_getmainadtops()
 {
 	mainadtoperation* ops = MALLOC(1, mainadtoperation);
 	ops->setop = &atddtree_mainadt_set;

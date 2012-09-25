@@ -11,7 +11,7 @@
 #include "common.h"
 
 //------- main adt interface
-mainadtoperation* cdht_getadtops()
+mainadtoperation* cdht_getmainadtops()
 {
 	mainadtoperation* ops = MALLOC(1, mainadtoperation);
 	ops->setop = &cdht_mainadt_set;

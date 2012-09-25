@@ -52,7 +52,7 @@ typedef enum _mainadttype
  * keyspace - only string
  */
 
-mainadtoperation* cdht_getadtops();
+mainadtoperation* cdht_getmainadtops();
 int* cdht_mainadt_initop(void* cfg);
 int cdht_mainadt_set(void* data, keyspace* ks, key* k, adtvalue* v);
 adtvalue* cdht_mainadt_get(void* data, keyspace* ks, key* k);
@@ -64,7 +64,7 @@ adtvalue* cdht_mainadt_get(void* data, keyspace* ks, key* k);
  @name main adt interface methods: atddtree
  @{
  */
-mainadtoperation* atddtree_getadtops();
+mainadtoperation* atddtree_getmainadtops();
 int atddtree_mainadt_set(void* data, keyspace* ks, key* k, adtvalue* v);
 adtvalue* atddtree_mainadt_get(void* data, keyspace* ks, key* k);
 /**

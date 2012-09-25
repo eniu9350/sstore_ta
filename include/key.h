@@ -18,6 +18,7 @@
  */
 typedef struct _key
 {
+	unsigned type:4;
 	void* ptr;
 } key;
 
@@ -27,5 +28,10 @@ typedef struct _key
 #define KEYADD(k1, k2) ((k1)+(k2))
 #define KEYMINUS(k1, k2) ((k1)-(k2))
 #define KEYDIV(k, d) ((k)/(d))
+
+
+key* key_create_fromint(int i);
+key* key_create_fromlong(long l);
+key* key_create_fromdouble(double d);
 
 #endif /* KEY_H_ */
