@@ -1,0 +1,4 @@
+===extensibility===
+- how to add an adt:
+suppose an adt named "xtree", then add a source file adt_xtree.c containing the def of following functions:
+xtree_getmainadtops();
