@@ -59,7 +59,7 @@ static key** perf_generate_keys(int nkeys)
 	key** keys = MALLOC(nkeys, key*);
 	for (i = 0; i < nkeys; i++)
 	{
-		keys[i] = key_create_fromdouble(arrival_real[i]);
+		keys[i] = key_create_fromint((int) arrival_real[i]);
 		//printf("arrival: %ld\n", arrival[i]);
 	}
 	//------------- end
@@ -85,6 +85,6 @@ void test(mainadtoperation* adtops)
 int main()
 {
 	mainadtoperation* adtops;
-	adtops = NULL;
-	test();
+	adtops = atddtree_getmainadtops();
+	test(adtops);
 }

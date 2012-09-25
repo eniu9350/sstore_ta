@@ -11,6 +11,9 @@
 
 #include "common.h"
 
+#define KEYTYPE_INT 1
+#define KEYTYPE_DOUBLE 3
+
 //typedef __u32 key;
 /*
  * key used both by sstore and adt;
@@ -21,6 +24,8 @@ typedef struct _key
 	unsigned type:4;
 	void* ptr;
 } key;
+
+
 
 #define KEYCMP(k1, k2) ((k1)==(k2)?0:( (k1)>(k2)?1:-1) )
 #define KEYCPY(k1, k2) ((k1)=(k2))
