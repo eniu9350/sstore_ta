@@ -53,7 +53,7 @@ int sstore_update(sstore*ss, keyspace* ks, key* k, colvalpair* cvpairs,
 
 value* sstore_get(sstore* ss, key* k, column* c)
 {
-	record* r = ss->adtops->findop(ss->adtdata, k);
+	adtvalue* r = ss->mainadtops->getop(ss->mainadtdata, k);
 }
 
 int main()
