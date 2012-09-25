@@ -5,3 +5,6 @@
 
 sstore:
 	cd src && $(MAKE) sstore
+	
+perf:
+	cd src && $(MAKE) perf

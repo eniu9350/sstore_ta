@@ -8,6 +8,8 @@
 #ifndef _SSTORE_ADTVALUE_H_
 #define _SSTORE_ADTVALUE_H_
 
+#include "common.h"
+
 /*
  value used by adt
  */
