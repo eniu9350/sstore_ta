@@ -56,7 +56,7 @@ static key** perf_generate_keys(int nkeys)
 		//printf("arrival_real: %f\n", arrival_real[i]);
 	}
 
-	key** keys = MALLOC(nkeys, key*);
+	keys = MALLOC(nkeys, key*);
 	for (i = 0; i < nkeys; i++)
 	{
 		keys[i] = key_create_fromint((int) arrival_real[i]);
@@ -77,8 +77,7 @@ void test(mainadtoperation* adtops)
 	int i;
 	for (i = 0; i < nkeys; i++)
 	{
-		adtops->setop(data, ks, keys + i, v);
-
+		adtops->setop(data, NULL, keys + i, NULL);	//mmm: ks
 	}
 }
 

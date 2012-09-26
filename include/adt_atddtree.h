@@ -8,33 +8,24 @@
  Basically, it's a binary "R-Tree" denoted by the paper.
  */
 
-
 #include "common.h"
 #include "key.h"
 #include "column.h"
 #include "adt.h"
 
-/**
- @name atddtree key macros
- @{
- */
 
-#define KEYCMP(k1, k2) ((k1)==(k2)?0:( (k1)>(k2)?1:-1) )
-#define KEYCPY(k1, k2) ((k1)=(k2))
-
-#define KEYADD(k1, k2) ((k1)+(k2))
-#define KEYMINUS(k1, k2) ((k1)-(k2))
-#define KEYDIV(k, d) ((k)/(d))
-/**
- @}
- */
 
 typedef struct _atddtree_node
 {
 	key* k;
+	adtvalue* v;
 	struct _atddtree_node* lchild;
 	struct _atddtree_node* rchild;
 } atddtree_node;
+
+/*
+ * suppose key int only!!!
+ */
 
 typedef struct _atddtree
 {
@@ -44,16 +35,12 @@ typedef struct _atddtree
 	int h;	//height
 } atddtree;
 
-
-
-
-
 /**
  @name atddtree node operations
  @{
  */
 
-atddtree_node* atddtree_node_create(atddtree* t, key* k);
+atddtree_node* atddtree_node_create(atddtree* t, key* k, adtvalue* v);
 /**
  @}
  */
@@ -72,6 +59,7 @@ atddtree* atddtree_create(key* kmin, key* kmax);
  \return 1 if found, -1 if not found and in left child, -2 if found and in right
  */
 int atddtree_find(atddtree* t, key* k, atddtree_node** n, int* d);
+int atddtree_insert(atddtree* t, key* k, adtvalue* v);
 /**
  @}
  */

@@ -16,6 +16,7 @@
 #include "common.h"
 #include "keyspace.h"
 #include "adtvalue.h"
+#include "key.h"
 
 /*
  typedef struct _record
@@ -27,7 +28,7 @@
 
 typedef struct _mainadtoperation
 {
-	int* (*initop)(void* cfg);
+	void* (*initop)(void* cfg);
 	int (*setop)(void* data, keyspace* ks, key* k, adtvalue* v);
 	adtvalue* (*getop)(void* data, keyspace* ks, key* k);
 
@@ -60,11 +61,17 @@ adtvalue* cdht_mainadt_get(void* data, keyspace* ks, key* k);
  @}
  */
 
+mainadtoperation* atddtree_getmainadtops();
 /**
  @name main adt interface methods: atddtree
  @{
  */
-mainadtoperation* atddtree_getmainadtops();
+typedef struct _atddtree_mainadt_cfg
+{
+	key* kmin;
+	key* kmax;
+} atddtree_mainadt_cfg;
+void* atddtree_mainadt_init(void* cfg);
 int atddtree_mainadt_set(void* data, keyspace* ks, key* k, adtvalue* v);
 adtvalue* atddtree_mainadt_get(void* data, keyspace* ks, key* k);
 /**

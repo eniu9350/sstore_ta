@@ -19,8 +19,8 @@ typedef struct _adtvalue
 	int len;
 }adtvalue;
 
-int adtvalue2int(value* v);
-value* value_create_byint(int v);
+int adtvalue2int(adtvalue* v);
+adtvalue* value_create_byint(int v);
 int adtvalue_free(adtvalue* v);
 
 #endif /* ADTVALUE_H_ */
