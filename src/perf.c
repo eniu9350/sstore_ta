@@ -87,17 +87,14 @@ void test(mainadtoperation* adtops)
 		//printf("arrival: %ld\n", arrival[i]);
 	}
 	cfg->kmax = kmax;
-	printf("===0===\n");
 	data = adtops->initop((void*) cfg);
 
-	printf("===1===\n");
 	//gen keys
 	for (i = 0; i < nkeys; i++)
 	{
 //		key_print(keys[i]);
 		adtops->setop(data, NULL, keys[i], NULL );	//mmm: ks
 	}
-	printf("===2===\n");
 
 	printf("height=%d, sizeof void*=%d, sizeof long=%d\n",
 			((atddtree*) data)->h, sizeof(void*), sizeof(long));
