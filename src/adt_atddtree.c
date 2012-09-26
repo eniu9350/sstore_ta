@@ -5,6 +5,7 @@ mainadtoperation* atddtree_getmainadtops()
 	mainadtoperation* ops = MALLOC(1, mainadtoperation);
 	ops->setop = &atddtree_mainadt_set;
 	ops->getop = &atddtree_mainadt_get;
+	ops->initop = &atddtree_mainadt_init;
 	return ops;
 }
 
@@ -18,6 +19,7 @@ void* atddtree_mainadt_init(void* cfg)
 int atddtree_mainadt_set(void* data, keyspace* ks, key* k, adtvalue* v)
 {
 	atddtree* t = (atddtree*) data;
+	atddtree_insert(t, k, v);
 	return 0;
 }
 
@@ -132,6 +134,7 @@ int atddtree_insert(atddtree* t, key* k, adtvalue* v)
 {
 	//find leaf node that is in charge of the range
 	atddtree_node* n = NULL;
+//	printf("in insert\n");
 	int d = 0;
 	int find;
 	if (t->root == NULL )

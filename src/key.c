@@ -64,3 +64,13 @@ key* key_cpy(key* k)
 	kcpy->ptr = k->ptr;
 	return kcpy;
 }
+
+void key_print(key* k)
+{
+	switch (k->type)
+	{
+	case KEYTYPE_INT:
+		printf("key=%ld\n", ((int) k->ptr));
+		break;
+	}
+}

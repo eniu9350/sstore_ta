@@ -11,6 +11,7 @@
 
 #include "adt.h"
 #include "key.h"
+#include "adt_atddtree.h"
 
 static key** perf_generate_keys(int nkeys)
 {
@@ -71,14 +72,35 @@ void test(mainadtoperation* adtops)
 {
 	void* data;
 	int nkeys = 1000;
-	key** keys = perf_generate_keys(nkeys);
-
-	//gen keys
 	int i;
+	key** keys = perf_generate_keys(nkeys);
+	atddtree_mainadt_cfg* cfg = MALLOC(1, atddtree_mainadt_cfg);
+	cfg->kmin = key_create_fromlong(1);
+	key* kmax;
+	kmax = keys[0];
 	for (i = 0; i < nkeys; i++)
 	{
-		adtops->setop(data, NULL, keys + i, NULL);	//mmm: ks
+		if (key_cmp(keys[i], kmax) > 0)
+		{
+			kmax = keys[i];
+		}
+		//printf("arrival: %ld\n", arrival[i]);
 	}
+	cfg->kmax = kmax;
+	printf("===0===\n");
+	data = adtops->initop((void*) cfg);
+
+	printf("===1===\n");
+	//gen keys
+	for (i = 0; i < nkeys; i++)
+	{
+//		key_print(keys[i]);
+		adtops->setop(data, NULL, keys[i], NULL );	//mmm: ks
+	}
+	printf("===2===\n");
+
+	printf("height=%d, sizeof void*=%d, sizeof long=%d\n",
+			((atddtree*) data)->h, sizeof(void*), sizeof(long));
 }
 
 int main()
