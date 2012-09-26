@@ -27,16 +27,6 @@ typedef struct _key
 
 
 
-//#define KEYCMP(k1, k2) ((k1)==(k2)?0:( (k1)>(k2)?1:-1) )
-#define KEYCMP(k1,k2) key_cmp((k1),(k2))
-//#define KEYCPY(k1, k2) ((k1)=(k2))
-#define KEYCPY(k1, k2) key_cpy((k1),(k2))
-
-#define KEYADD(k1, k2) ((k1)+(k2))
-#define KEYMINUS(k1, k2) ((k1)-(k2))
-#define KEYDIV(k, d) ((k)/(d))
-
-
 key* key_create_fromint(int i);
 key* key_create_fromlong(long l);
 key* key_create_fromdouble(double d);
