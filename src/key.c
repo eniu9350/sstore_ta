@@ -25,7 +25,9 @@ key* key_create_fromlong(long l)
 
 key* key_create_fromdouble(double d)
 {
-
+	printf(
+			"key_create_fromdouble not implemented!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+	return NULL ;
 }
 
 long key_getlong(key* k)

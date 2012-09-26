@@ -28,6 +28,8 @@ adtvalue* atddtree_mainadt_get(void* data, keyspace* ks, key* k)
 	return NULL ;
 }
 
+
+//----------------------------------------------------------- private
 atddtree_node* atddtree_node_create(atddtree* t, key* k, adtvalue* v)
 {
 	atddtree_node* n = MALLOC(1, atddtree_node);
@@ -76,7 +78,7 @@ int atddtree_find(atddtree* t, key* k, atddtree_node** n, int* d)
 	long max;
 	long range;
 	long min1, max1, min2, max2;
-	int flag = 0;	// 1: lchild, 2: rchild
+	int flag = 0;	// -1: lchild, -2: rchild
 
 	min = key_getlong(t->kmin);
 	max = key_getlong(t->kmax);
@@ -147,6 +149,7 @@ int atddtree_insert(atddtree* t, key* k, adtvalue* v)
 		find = atddtree_find(t, k, &n, &d);
 		if (find == 1)
 		{	//found
+			printf("atddtree_insert: k exist already.\n");
 			return 0;	//mmm
 		}
 		else

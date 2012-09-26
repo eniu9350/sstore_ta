@@ -6,6 +6,8 @@
 
  Inspired by "Distribution Driven Binary Tree Balancing with R-Trees".
  Basically, it's a binary "R-Tree" denoted by the paper.
+
+ Notes: suppose integer type key only!!!
  */
 
 #include "common.h"
@@ -23,9 +25,6 @@ typedef struct _atddtree_node
 	struct _atddtree_node* rchild;
 } atddtree_node;
 
-/*
- * suppose key int only!!!
- */
 
 typedef struct _atddtree
 {
@@ -51,7 +50,7 @@ atddtree_node* atddtree_node_create(atddtree* t, key* k, adtvalue* v);
  */
 atddtree* atddtree_create(key* kmin, key* kmax);
 /*
- \brief
+ \brief assume tree not null(mmm: check)
  \param[in] t tree to find
  \param[in] n Where the result pointer stores.When key is found, n point to the pointer of the found key;when not found, n point to the pointer of the key
  \param[in] h if found, h is the depth of the node found; if not found h is the depth of the node to be created
