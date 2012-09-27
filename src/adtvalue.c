@@ -25,5 +25,5 @@ adtvalue* value_create_byint(int v)
 int adtvalue_free(adtvalue* v)
 {
 	printf("adtvalue_free not implemented!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-	return NULL ;
+	return 0 ;
 }

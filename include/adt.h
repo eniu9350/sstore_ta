@@ -78,4 +78,17 @@ adtvalue* atddtree_mainadt_get(void* data, keyspace* ks, key* k);
  @}
  */
 
+
+mainadtoperation* avltree_getmainadtops();
+/**
+ @name main adt interface methods: atddtree
+ @{
+ */
+void* avltree_mainadt_init(void* cfg);
+int avltree_mainadt_set(void* data, keyspace* ks, key* k, adtvalue* v);
+adtvalue* avltree_mainadt_get(void* data, keyspace* ks, key* k);
+/**
+ @}
+ */
+
 #endif /* ADT_H_ */

@@ -8,10 +8,13 @@
 #include <stdlib.h>
 #include <gsl_rng.h>
 #include <gsl_randist.h>
+#include <time.h>
+#include <unistd.h>
 
 #include "adt.h"
 #include "key.h"
 #include "adt_atddtree.h"
+#include "adt_avltree.h"
 
 static key** perf_generate_keys(int nkeys)
 {
@@ -71,8 +74,10 @@ static key** perf_generate_keys(int nkeys)
 void test(mainadtoperation* adtops)
 {
 	void* data;
-	int nkeys = 1000;
+	int nkeys = 1024*1024 - 1;
 	int i;
+	struct timespec ts1, ts2;
+
 	key** keys = perf_generate_keys(nkeys);
 	atddtree_mainadt_cfg* cfg = MALLOC(1, atddtree_mainadt_cfg);
 	cfg->kmin = key_create_fromlong(1);
@@ -89,20 +94,30 @@ void test(mainadtoperation* adtops)
 	cfg->kmax = kmax;
 	data = adtops->initop((void*) cfg);
 
-	//gen keys
+	//insert keys
+	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &ts1);
 	for (i = 0; i < nkeys; i++)
 	{
 //		key_print(keys[i]);
 		adtops->setop(data, NULL, keys[i], NULL );	//mmm: ks
 	}
+	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &ts2);
 
-	printf("height=%d, sizeof void*=%d, sizeof long=%d\n",
-			((atddtree*) data)->h, sizeof(void*), sizeof(long));
+	printf("sec = %d, nsec=%ld\n", ts1.tv_sec, ts1.tv_nsec);
+	printf("sec = %d, nsec=%ld\n", ts2.tv_sec, ts2.tv_nsec);
+
+//	printf("height=%d, sizeof void*=%d, sizeof long=%d\n",
+//			((atddtree*) data)->h, sizeof(void*), sizeof(long));
+	double tcost = (ts2.tv_sec - ts1.tv_sec)
+			+ (ts2.tv_nsec - ts1.tv_nsec) / 1000000000.0;
+	printf("height=%d, time=%f\n", ((avltree*) data)->height, tcost);
+//	printf("height=%d, time=%f\n", ((atddtree*) data)->h, tcost);
 }
 
 int main()
 {
 	mainadtoperation* adtops;
-	adtops = atddtree_getmainadtops();
+//	adtops = atddtree_getmainadtops();
+	adtops = avltree_getmainadtops();
 	test(adtops);
 }
