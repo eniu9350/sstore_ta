@@ -6,6 +6,7 @@ mainadtoperation* atddtree_getmainadtops()
 	ops->setop = &atddtree_mainadt_set;
 	ops->getop = &atddtree_mainadt_get;
 	ops->initop = &atddtree_mainadt_init;
+	ops->printinfo = &atddtree_mainadt_printinfo;
 	return ops;
 }
 
@@ -28,7 +29,11 @@ adtvalue* atddtree_mainadt_get(void* data, keyspace* ks, key* k)
 	return NULL ;
 }
 
-
+void atddtree_mainadt_printinfo(void* data)
+{
+	atddtree* t = (atddtree*) data;
+	printf("atddtree: height=%d\n", t->h);
+}
 //----------------------------------------------------------- private
 atddtree_node* atddtree_node_create(atddtree* t, key* k, adtvalue* v)
 {

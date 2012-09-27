@@ -103,21 +103,22 @@ void test(mainadtoperation* adtops)
 	}
 	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &ts2);
 
-	printf("sec = %d, nsec=%ld\n", ts1.tv_sec, ts1.tv_nsec);
-	printf("sec = %d, nsec=%ld\n", ts2.tv_sec, ts2.tv_nsec);
+//	printf("sec = %d, nsec=%ld\n", ts1.tv_sec, ts1.tv_nsec);
+//	printf("sec = %d, nsec=%ld\n", ts2.tv_sec, ts2.tv_nsec);
 
 //	printf("height=%d, sizeof void*=%d, sizeof long=%d\n",
 //			((atddtree*) data)->h, sizeof(void*), sizeof(long));
 	double tcost = (ts2.tv_sec - ts1.tv_sec)
 			+ (ts2.tv_nsec - ts1.tv_nsec) / 1000000000.0;
-	printf("height=%d, time=%f\n", ((avltree*) data)->height, tcost);
+	printf("time=%f\n", tcost);
+	adtops->printinfo(data);
 //	printf("height=%d, time=%f\n", ((atddtree*) data)->h, tcost);
 }
 
 int main()
 {
 	mainadtoperation* adtops;
-//	adtops = atddtree_getmainadtops();
-	adtops = avltree_getmainadtops();
+	adtops = atddtree_getmainadtops();
+//	adtops = avltree_getmainadtops();
 	test(adtops);
 }

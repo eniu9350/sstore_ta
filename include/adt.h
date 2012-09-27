@@ -31,6 +31,7 @@ typedef struct _mainadtoperation
 	void* (*initop)(void* cfg);
 	int (*setop)(void* data, keyspace* ks, key* k, adtvalue* v);
 	adtvalue* (*getop)(void* data, keyspace* ks, key* k);
+	void (*printinfo)(void* data);
 
 	/*ks ops*/
 
@@ -74,6 +75,7 @@ typedef struct _atddtree_mainadt_cfg
 void* atddtree_mainadt_init(void* cfg);
 int atddtree_mainadt_set(void* data, keyspace* ks, key* k, adtvalue* v);
 adtvalue* atddtree_mainadt_get(void* data, keyspace* ks, key* k);
+void atddtree_mainadt_printinfo(void* data);
 /**
  @}
  */
@@ -81,12 +83,13 @@ adtvalue* atddtree_mainadt_get(void* data, keyspace* ks, key* k);
 
 mainadtoperation* avltree_getmainadtops();
 /**
- @name main adt interface methods: atddtree
+ @name main adt interface methods: avltree
  @{
  */
 void* avltree_mainadt_init(void* cfg);
 int avltree_mainadt_set(void* data, keyspace* ks, key* k, adtvalue* v);
 adtvalue* avltree_mainadt_get(void* data, keyspace* ks, key* k);
+void avltree_mainadt_printinfo(void* data);
 /**
  @}
  */

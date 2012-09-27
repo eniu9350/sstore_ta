@@ -622,6 +622,7 @@ mainadtoperation* avltree_getmainadtops()
 	ops->setop = &avltree_mainadt_set;
 	ops->getop = &avltree_mainadt_get;
 	ops->initop = &avltree_mainadt_init;
+	ops->printinfo = &avltree_mainadt_printinfo;
 	return ops;
 }
 
@@ -657,4 +658,9 @@ adtvalue* avltree_mainadt_get(void* data, keyspace* ks, key* k)
 	n = avltree_lookup(n_key, t);
 	free(n_key);
 	return n->v;
+}
+void avltree_mainadt_printinfo(void* data)
+{
+	avltree* t = (avltree*) data;
+	printf("avltree: height=%d\n", t->height);
 }
