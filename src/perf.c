@@ -118,7 +118,7 @@ void test(mainadtoperation* adtops)
 int main()
 {
 	mainadtoperation* adtops;
-	adtops = atddtree_getmainadtops();
-//	adtops = avltree_getmainadtops();
+//	adtops = atddtree_getmainadtops();
+	adtops = avltree_getmainadtops();
 	test(adtops);
 }

@@ -22,7 +22,6 @@
 
 #include "adt_avltree.h"
 
-
 //----------------------------------------------------------- private
 int avltree_key_cmp(const avltree_node *n1, const avltree_node *n2)
 {
@@ -283,7 +282,10 @@ avltree_node *avltree_insert(avltree_node *node, avltree *tree)
 
 	key = do_lookup(node, tree, &parent, &unbalanced, &is_left);
 	if (key)
+	{
+		printf("avltree_insert: k exist already.\n");
 		return key;
+	}
 
 	INIT_NODE(node);
 
@@ -614,7 +616,6 @@ int avltree_init(avltree *tree, avltree_cmp_fn_t cmp, unsigned long flags)
 	return 0;
 }
 
-
 //-------------public
 mainadtoperation* avltree_getmainadtops()
 {
@@ -623,6 +624,8 @@ mainadtoperation* avltree_getmainadtops()
 	ops->getop = &avltree_mainadt_get;
 	ops->initop = &avltree_mainadt_init;
 	ops->printinfo = &avltree_mainadt_printinfo;
+	//mmm: TODO
+	AVLTREE_KEY_CMP_SHARED = MALLOC(1, avltree_node);
 	return ops;
 }
 
@@ -650,7 +653,8 @@ adtvalue* avltree_mainadt_get(void* data, keyspace* ks, key* k)
 {
 	avltree* t = (avltree*) data;
 	//TODO mmm: not optimized!
-	avltree_node* n_key = MALLOC(1, avltree_node);
+//	avltree_node* n_key = MALLOC(1, avltree_node);
+	avltree_node* n_key = AVLTREE_KEY_CMP_SHARED;
 	avltree_node* n;
 	INIT_NODE(n_key);
 	n_key->k = k;

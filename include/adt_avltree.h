@@ -23,6 +23,7 @@
 
 #include <stdint.h>
 #include <stddef.h>
+#include <stdio.h>
 
 #include "common.h"
 #include "key.h"
@@ -178,6 +179,9 @@ typedef struct _avltree_node
 
 typedef int (*avltree_cmp_fn_t)(const avltree_node *,
 		const avltree_node *);
+
+avltree_node* AVLTREE_KEY_CMP_SHARED;
+
 
 typedef struct _avltree
 {
